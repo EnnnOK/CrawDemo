@@ -10,7 +10,7 @@
             "request": "launch",
             "name": "启动程序",
             // "program": "${workspaceFolder}\\databaseUtil\\db.js"
-            "program": "${workspaceFolder}\\crawUtil\\craw.js"
+            "program": "${workspaceFolder}\\coincraw\\craw.js"
 
         }
     ]
