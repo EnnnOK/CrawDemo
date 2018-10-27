@@ -1,8 +1,9 @@
+/*jshint esversion: 6 */
+/* jshint -W030 */
 module.paths = ['D:\\Software\\Software\\Node.js\\node_modules'];
-console.log(module.paths);
 
+'use strict';
 var mysql = require("mysql");
-
 var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
