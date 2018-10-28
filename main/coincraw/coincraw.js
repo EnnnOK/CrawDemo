@@ -19,15 +19,20 @@ const Header = {
 const FlowRequest = 'https://' + Origin + '/api/coin-profile/fund?coin_type=%s&currency=%s';
 
 //TODO Get all coins
-let url = util.format(FlowRequest, 'bitcoin', 'cny');
-request.get(url, {
-    headers: Header
-}, function (err, res, body) {
-    let result = JSON.parse(body);
-    //TODO Decode data and save to database
-    //main_inflow, main_in_pro, main_outflow, main_out_pro
-    //retail_inflow, retail_in_pro, retail_outflow, retail_out_pro
-    //main_net_inflow, retail_net_inflow, big_inflow, big_out_flow
-    //mid_inflow, mid_outflow, mid_net_flow, little_inflow, little_outflow, little_net_flow
-    console.log(result.flow_distribute);
-});
+//todo 数据采集和数据计息分开来处理
+function doRequest() {
+    let url = util.format(FlowRequest, 'bitcoin', 'cny');
+    request.get(url, {
+        headers: Header
+    }, function (err, res, body) {
+        let result = JSON.parse(body);
+        //TODO Decode data and save to database
+        //main_inflow, main_in_pro, main_outflow, main_out_pro
+        //retail_inflow, retail_in_pro, retail_outflow, retail_out_pro
+        //main_net_inflow, retail_net_inflow, big_inflow, big_out_flow
+        //mid_inflow, mid_outflow, mid_net_flow, little_inflow, little_outflow, little_net_flow
+        console.log(result.flow_distribute);
+    });
+}
+
+module.exports = doRequest;
