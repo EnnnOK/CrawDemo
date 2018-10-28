@@ -25,5 +25,9 @@ request.get(url, {
 }, function (err, res, body) {
     let result = JSON.parse(body);
     //TODO Decode data and save to database
+    //main_inflow, main_in_pro, main_outflow, main_out_pro
+    //retail_inflow, retail_in_pro, retail_outflow, retail_out_pro
+    //main_net_inflow, retail_net_inflow, big_inflow, big_out_flow
+    //mid_inflow, mid_outflow, mid_net_flow, little_inflow, little_outflow, little_net_flow
     console.log(result.flow_distribute);
 });
