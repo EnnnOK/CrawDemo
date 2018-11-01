@@ -25,7 +25,7 @@ connection.connect(function (err) {
 
 function saveCoinData(tableName, date, price, chain_value, flow) {
     connection.query(
-        util.format(INSERT_SQL, tableName),
+        util.format(INSERT_COIN, tableName),
         [date, price, chain_value, flow],
         function (err, result, fields) {
             if (err) throw err;
@@ -45,4 +45,5 @@ function saveStockDate(exchange, insert_date, change_value, record_date) {
         });
 }
 
-module.exports = { saveStockDate, saveCoinData };
+exports.saveCoin = saveCoinData;
+exports.saveStock = saveStockDate;
