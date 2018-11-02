@@ -8,5 +8,6 @@ let coin = require('coincraw/coincraw');
 // console.log('out: '+stocks);
 // db.saveStockDate();
 
-coin.coinCraw();
+// coin.coinCraw('bitcoin');
+outname.getStock();
 // process.exit();

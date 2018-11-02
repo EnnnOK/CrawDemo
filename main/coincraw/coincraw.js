@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 /* jshint -W030 */
-module.paths = ['D:\\Software\\Software\\Node.js\\node_modules','D://coinanalystic//main'];
+module.paths = ['D:\\Software\\Software\\Node.js\\node_modules', 'D://coinanalystic//main'];
 'use strict';
 const request = require('request');
 const iconv = require('iconv-lite');
@@ -17,20 +17,29 @@ const Header = {
     'Connection': 'keep-alive',
     'Host': Origin
 };
-const FlowRequest = 'https://' + Origin + '/api/coin-profile/fund?coin_type=%s&currency=%s';
+const FlowRequest = 'https://' + Origin + '/api/coin-profile/analysis?coin_type=%s&currency=%s';
+const PriceRequest = 'https://' + Origin + '/api/coin-profile/index?coin_type=%s&currency=%s';
 
 //TODO Get all coins
 //todo 数据采集和数据计息分开来处理,增加市值数量
 //Make promise, 获取另一个api
-function doRequest() {
-    let url = util.format(FlowRequest, 'bitcoin', 'cny');
-    request.get('https://www.aicoin.net.cn/api/coin-profile/analysis?coin_type=bitcoin&currency=cny', { // analysis , index
-        headers: Header
-    }, function (err, res, body) {
-        let result = JSON.parse(body);
-        console.log(result);
-        db.saveCoin('bitcoin', new Date(), 111, result.data.trade_data.mc_value, result.data.statistical_data.fundNetIn_24hour);
-        console.log(result.flow_distribute);
+function doRequest(coinName) {
+    let coinRequest = new Promise(function (resolve, reject) {
+        request.get(util.format(PriceRequest, coinName, 'cny'), { // analysis , index
+            headers: Header
+        }, function (err, res, body) {
+            let result = JSON.parse(body);
+            resolve(result.global.last_usd);
+        });
+    });
+    coinRequest.then(function (price) {
+        request.get(util.format(FlowRequest, coinName, 'cny'), { // analysis , index
+            headers: Header
+        }, function (err, res, body) {
+            let result = JSON.parse(body);
+            db.saveCoin(coinName, new Date(), price, result.data.trade_data.mc_value, result.data.statistical_data.fundNetIn_24hour);
+            process.exit();
+        });
     });
 }
 
