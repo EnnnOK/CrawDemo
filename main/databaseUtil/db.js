@@ -8,7 +8,6 @@ const util = require('util');
 //TODO change table name, id auto increate
 const INSERT_COIN = 'INSERT INTO %s(date, price, chain_value, flow) values(?, ?, ?, ?)';
 const INSERT_STOCK = 'INSERT INTO stock_t(exchange, insert_date, change_value, record_date) values(?, ?, ?, ?)';
-
 //TODO Make database config file
 const DATABASE_CONFIG = {
     host: 'localhost',
@@ -29,7 +28,7 @@ function saveCoinData(tableName, date, price, chain_value, flow) {
         [date, price, chain_value, flow],
         function (err, result, fields) {
             if (err) throw err;
-            //TODO 
+        
         });
 }
 

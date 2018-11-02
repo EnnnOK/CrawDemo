@@ -9,7 +9,7 @@ const request = require('request');
 //todo change to Promise then
 //todo 解决异步问题
 //数据采集和数据解析分开处理
-function getStock() {
+function doRequest() {
 
     let stockRequest = new Promise(function (resolve, reject) {
         request.get('http://hqres.eastmoney.com/EMQuote_Center3.0/js/gridlist.min.js?v=180925193855968', function (err, res, body) {
@@ -37,4 +37,4 @@ function getStock() {
 
 }
 
-exports.getStock = getStock;
+exports.getStock = doRequest;

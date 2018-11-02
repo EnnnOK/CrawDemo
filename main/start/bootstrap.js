@@ -1,6 +1,6 @@
 'use strict';
 module.paths=['D://coinanalystic//main']
-let outname = require('stockcraw/stockcraw');
+let stock = require('stockcraw/stockcraw');
 let db = require('databaseUtil/db');
 let coin = require('coincraw/coincraw');
 // console.log('bootstrap: '+test);
@@ -9,5 +9,5 @@ let coin = require('coincraw/coincraw');
 // db.saveStockDate();
 
 // coin.coinCraw('bitcoin');
-outname.getStock();
+stock.getStock();
 // process.exit();

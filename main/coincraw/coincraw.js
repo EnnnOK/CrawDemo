@@ -21,11 +21,11 @@ const FlowRequest = 'https://' + Origin + '/api/coin-profile/analysis?coin_type=
 const PriceRequest = 'https://' + Origin + '/api/coin-profile/index?coin_type=%s&currency=%s';
 
 //TODO Get all coins
-//todo 数据采集和数据计息分开来处理,增加市值数量
+//todo 数据采集和数据计息分开来处理,增加市值数量,增加活跃度
 //Make promise, 获取另一个api
 function doRequest(coinName) {
     let coinRequest = new Promise(function (resolve, reject) {
-        request.get(util.format(PriceRequest, coinName, 'cny'), { // analysis , index
+        request.get(util.format(PriceRequest, coinName, 'cny'), {
             headers: Header
         }, function (err, res, body) {
             let result = JSON.parse(body);
@@ -33,7 +33,7 @@ function doRequest(coinName) {
         });
     });
     coinRequest.then(function (price) {
-        request.get(util.format(FlowRequest, coinName, 'cny'), { // analysis , index
+        request.get(util.format(FlowRequest, coinName, 'cny'), {
             headers: Header
         }, function (err, res, body) {
             let result = JSON.parse(body);
