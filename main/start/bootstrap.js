@@ -1,5 +1,5 @@
 'use strict';
-module.paths=['D://coinanalystic//main']
+module.paths=['D://coinanalystic//main'];
 let stock = require('stockcraw/stockcraw');
 let db = require('databaseUtil/db');
 let coin = require('coincraw/coincraw');
@@ -8,6 +8,7 @@ let coin = require('coincraw/coincraw');
 // console.log('out: '+stocks);
 // db.saveStockDate();
 
-// coin.coinCraw('bitcoin');
-stock.getStock();
+// coin.coinCraw('steem');
+// stock.getStock();
+db.showTable();
 // process.exit();

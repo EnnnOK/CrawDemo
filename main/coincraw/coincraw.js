@@ -20,9 +20,7 @@ const Header = {
 const FlowRequest = 'https://' + Origin + '/api/coin-profile/analysis?coin_type=%s&currency=%s';
 const PriceRequest = 'https://' + Origin + '/api/coin-profile/index?coin_type=%s&currency=%s';
 
-//TODO Get all coins
-//todo 数据采集和数据计息分开来处理,增加市值数量,增加活跃度
-//Make promise, 获取另一个api
+//todo 增加活跃度分析
 function doRequest(coinName) {
     let coinRequest = new Promise(function (resolve, reject) {
         request.get(util.format(PriceRequest, coinName, 'cny'), {
@@ -38,7 +36,6 @@ function doRequest(coinName) {
         }, function (err, res, body) {
             let result = JSON.parse(body);
             db.saveCoin(coinName, new Date(), price, result.data.trade_data.mc_value, result.data.statistical_data.fundNetIn_24hour);
-            process.exit();
         });
     });
 }
