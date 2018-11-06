@@ -6,3 +6,5 @@ function coinType(name,date,price,chain_value,flow){
     this.chain_value = chain_value;
     this.flow = flow;
 }
+
+exports.NewCoin = coinType;
