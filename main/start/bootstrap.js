@@ -1,9 +1,9 @@
 'use strict';
-module.paths=['D://coinanalystic//main'];
+module.paths = ['D://coinanalystic//main'];
 let stock = require('stockcraw/stockcraw');
 let db = require('databaseUtil/db');
 let coin = require('coincraw/coincraw');
-let logger = require('config/LogUtil');  
+let logger = require('config/LogUtil');
 
 // logger.log();
 // console.log('bootstrap: '+test);
@@ -11,8 +11,8 @@ let logger = require('config/LogUtil');
 // console.log('out: '+stocks);
 // db.saveStockDate();
 
-logger.log();
+// logger.log();
 // coin.coinCraw('steem');
 // stock.getStock();
-// db.showTable();
+db.showTable();
 // process.exit();
